@@ -1,4 +1,4 @@
-Project Name: boris_bikes
+# Project Name: boris_bikes
 
 name of the projects and all sub-modules and libraries (sometimes they are named different and very confusing to new users)
 
