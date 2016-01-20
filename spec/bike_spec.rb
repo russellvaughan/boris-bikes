@@ -5,3 +5,4 @@ describe Bike do
 		expect(bike).to be_working
 	end
 end
+
