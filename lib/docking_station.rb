@@ -6,6 +6,7 @@ class DockingStation
     @bike
   end
   def dock bike
+    raise "Docking Station is full" unless !@bike
     @bike = bike
   end
 end
