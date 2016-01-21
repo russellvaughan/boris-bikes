@@ -2,6 +2,7 @@ require 'docking_station'
 
 describe DockingStation do
 	bike = Bike.new
+	bike2 = Bike.new
 
 	it {is_expected.to respond_to :release_bike}
 
@@ -28,6 +29,10 @@ describe DockingStation do
 		expect {subject.release_bike}.to raise_error("no bike available")
 	end
 
+	it "raises an error when trying to dock a bike and a bike is already there" do
+		subject.dock(bike)
+		expect {subject.dock(bike2)}.to raise_error("warning bike already docked")
+	end
 end
 # docking station
 # 1. test for error messgae when no bikes availabl
