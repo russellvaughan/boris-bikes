@@ -8,7 +8,7 @@ class DockingStation
 	end
 
   def release_bike
-    raise "No bikes availiable error" if empty?
+    raise "No bikes availiable error" if empty? || @bikes.pop.working? == false
     @bikes
   end
   def dock bike
