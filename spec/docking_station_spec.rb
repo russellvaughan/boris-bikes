@@ -15,7 +15,7 @@ describe DockingStation do
 	end
 
 	it "docks a bike" do
-		expect(subject.dock(bike)).to eq bike
+		expect(subject.dock(bike)).to eq [bike]
 	end
 
 
@@ -29,11 +29,16 @@ describe DockingStation do
 		expect {subject.release_bike}.to raise_error("no bike available")
 	end
 
+=begin
 	it "raises an error when trying to dock a bike and a bike is already there" do
 		subject.dock(bike)
 		expect {subject.dock(bike2)}.to raise_error("warning bike already docked")
 	end
+=end
+
+	it "allows us to dock 20 bikes before an error is raised" do
+		20.times { subject.dock(Bike.new) }
+		expect {subject.dock(Bike.new)}.to raise_error("warning 20 bikes already docked")
+	end
+
 end
-# docking station
-# 1. test for error messgae when no bikes availabl
-# 2. test for when we call .release_bike and a bike is released
