@@ -45,7 +45,11 @@ describe DockingStation do
   expect(subject.bikes.length).to eq 20
   end
 
-  it 'has a default capacity of 20 bikes' do
+  it 'has a default capacity of # of bikes' do
     expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
+  end
+
+  it 'can change capacity' do
+    expect((DockingStation.new (50)).capacity).to eq 50
   end
 end
