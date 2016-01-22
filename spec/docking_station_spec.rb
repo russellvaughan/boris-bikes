@@ -1,8 +1,7 @@
 require 'docking_station'
 
 describe DockingStation do
-	bike = Bike.new
-	bike2 = Bike.new
+	let(:bike) {double(:bikes)}
 
 
 
@@ -39,20 +38,20 @@ describe DockingStation do
 		end
 
 		it "allows us to dock #{DockingStation::DEFAULT_CAPACITY} bikes before an error is raised" do
-			subject.capacity.times { subject.dock(Bike.new) }
-			expect {subject.dock(Bike.new)}.to raise_error("warning #{subject.capacity} bikes already docked")
+			subject.capacity.times { subject.dock(double(:bike)) }
+			expect {subject.dock(double(:bike))}.to raise_error("warning #{subject.capacity} bikes already docked")
 		end
 
 		it "doesn't release broken bikes" do
-			bike = Bike.new
+			bike = double(:bike)
 			bike.report_broken
 			subject.dock(bike)
 			expect {subject.release_bike}.to raise_error("no bike available")
 		end
 
 		it "skips broken bikes" do
-			bike = Bike.new
-			bike_2 = Bike.new
+			bike = double(:bike)
+			bike_2 = double(:bike)
 			bike_2.report_broken
 			subject.dock(bike)
 			subject.dock(bike_2)
