@@ -14,8 +14,13 @@ class DockingStation
 
 
 	def release_bike
-		fail "no bike available" if empty?
-		bikes.pop
+		bikes.each do |bike|
+			 if bike.working
+			 	bikes.delete(bike)
+			 	return bike
+			 end
+		end
+	fail "no bike available"
 	end
 
 	def dock(bike)
@@ -23,7 +28,7 @@ class DockingStation
 		bikes.push(bike)
 	end
 
-	private
+private
 
 	attr_reader :bikes
 

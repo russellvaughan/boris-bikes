@@ -7,7 +7,7 @@ describe DockingStation do
 
 
 	it "checks bike is working" do
-		expect(bike).to be_working
+		expect(bike.working).to eq true
 	end
 
 
@@ -42,6 +42,22 @@ describe DockingStation do
 			subject.capacity.times { subject.dock(Bike.new) }
 			expect {subject.dock(Bike.new)}.to raise_error("warning #{subject.capacity} bikes already docked")
 		end
+
+		it "doesn't release broken bikes" do
+			bike = Bike.new
+			bike.report_broken
+			subject.dock(bike)
+			expect {subject.release_bike}.to raise_error("no bike available")
+		end
+
+		it "skips broken bikes" do
+			bike = Bike.new
+			bike_2 = Bike.new
+			bike_2.report_broken
+			subject.dock(bike)
+			subject.dock(bike_2)
+			expect(subject.release_bike).to eq bike
+		end
 	end
 
 
@@ -55,11 +71,6 @@ describe DockingStation do
 			ds = DockingStation.new(30)
 			expect(ds.capacity).to eq 30
 		end
-
-
-
 	end
-
-
 
 end
