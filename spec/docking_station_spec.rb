@@ -7,7 +7,7 @@ describe DockingStation do
 
     it 'release working bike' do
       bike = Bike.new
-      expect(bike).to be_working
+      expect(bike.working).to eq true
     end
 
     it 'raise error when no bikes at docking station' do
@@ -64,6 +64,15 @@ describe DockingStation do
 
   it 'can change capacity' do
     expect((DockingStation.new (50)).capacity).to eq 50
+  end
+  
+  it 'releases a working bike if multiple bikes are docked and at least one is broken' do
+    station = described_class.new
+    3.times { station.dock(Bike.new)}
+    bike = Bike.new
+    bike.report
+    station.dock(bike)
+    expect(station.release_bike).to be_a Bike
   end
 
 
