@@ -39,7 +39,7 @@ let(:bike) { double :bike }
  
   describe '#dock' do
 
-    it {is_expected.to respond_to(:dock).with(1).argument}
+    
 
     it 'dock bike' do
       dock = subject.dock(bike)

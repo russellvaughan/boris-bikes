@@ -6,7 +6,7 @@ describe "van" do
 	van = Van.new
 	station=DockingStation.new
 	van.collect(station)
-	expect(van.units).to eq 3
+	expect(van.units).to eq 
 	end
 	
 end
