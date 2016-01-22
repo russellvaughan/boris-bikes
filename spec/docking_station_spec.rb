@@ -12,6 +12,10 @@ describe DockingStation do
 
 
 
+
+
+
+
 	describe "#release_bike" do
 		it {is_expected.to respond_to :release_bike}
 
@@ -35,8 +39,27 @@ describe DockingStation do
 		end
 
 		it "allows us to dock #{DockingStation::DEFAULT_CAPACITY} bikes before an error is raised" do
-			DockingStation::DEFAULT_CAPACITY.times { subject.dock(Bike.new) }
-			expect {subject.dock(Bike.new)}.to raise_error("warning #{DockingStation::DEFAULT_CAPACITY} bikes already docked")
+			subject.capacity.times { subject.dock(Bike.new) }
+			expect {subject.dock(Bike.new)}.to raise_error("warning #{subject.capacity} bikes already docked")
 		end
 	end
+
+
+
+	describe '.initialize' do
+		it "has a default capacity" do
+		expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
+		end
+
+		it "can have a set capacity" do
+			ds = DockingStation.new(30)
+			expect(ds.capacity).to eq 30
+		end
+
+
+
+	end
+
+
+
 end
