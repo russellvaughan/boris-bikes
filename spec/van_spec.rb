@@ -1,38 +1,33 @@
 require 'van'
-require 'docking_station'
+
 
 describe Van do
-	let(:station) { DockingStation.new}  
-	let(:bike) { Bike.new} 
-	let(:van) { Van.new} 
-	it "creates a new instance of the van class" do
-	expect(subject.class).to be Van
-	end
-	it {is_expected.to respond_to(:collect).with(1).argument}
-	  
+  let(:bike1) {double(:bike, :working => true)}
+  let(:bike2) {double(:bike, :working => false)}
+  let(:bike3) {double(:bike, :working => false)}
 
-#describe '#check_status' do
-#it "checks if broken bikes in station" do
-
-	describe '#collect' do
-		it 'collects a broken bike at station' do
-	    bike_b = bike
-	    bike_b.report
-		station.dock(bike_b)
-    	expect(van.collect(station)).to eq [bike_b]
-    	end
-
-    	it 'collects broken bikes and leaves working bikes' do 
-    	station.dock(bike)
-    	bike2 = bike
-    	bike2.report 
-    	station.dock(bike2)
-    	expect(van.collect(station)).to eq [bike2]
-    	end	
-	end
-
-end	
+  let(:docking_station) {double(:docking_station, :bikes => [bike1, bike2])}
 
 
-#end
-#end
+
+  it 'creates a new instance of Van class' do
+    expect(subject.class).to be Van
+  end
+
+  describe '#collect' do
+    it "responds to 'collect with one argument'" do
+      expect(subject).to respond_to(:collect).with(1).argument
+    end
+  end
+
+  it 'collects broken bikes' do
+    allow(docking_station).to receive(:bikes).and_return([bike1, bike2, bike3])
+    expect(docking_station.bikes).to eq([bike1, bike2, bike3])
+    docking_station.bikes
+    expect(subject.collect(docking_station)).to eq [bike2, bike3]
+
+  end
+
+
+
+end
