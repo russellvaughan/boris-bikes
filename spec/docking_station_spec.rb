@@ -34,9 +34,9 @@ describe DockingStation do
 			expect(subject.dock(bike)).to eq [bike]
 		end
 
-		it "allows us to dock 20 bikes before an error is raised" do
-			20.times { subject.dock(Bike.new) }
-			expect {subject.dock(Bike.new)}.to raise_error("warning 20 bikes already docked")
+		it "allows us to dock #{DockingStation::DEFAULT_CAPACITY} bikes before an error is raised" do
+			DockingStation::DEFAULT_CAPACITY.times { subject.dock(Bike.new) }
+			expect {subject.dock(Bike.new)}.to raise_error("warning #{DockingStation::DEFAULT_CAPACITY} bikes already docked")
 		end
 	end
 end
