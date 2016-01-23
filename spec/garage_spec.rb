@@ -25,4 +25,6 @@ describe "#fix_bikes" do
 	expect(garage.fix_bikes).to eq [bike]
 	end
 	end
+
+	
 end
