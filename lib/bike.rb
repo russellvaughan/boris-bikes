@@ -7,6 +7,6 @@ class Bike
     @working = false
   end
 
-  attr_reader :working
+  attr_accessor :working
 
 end

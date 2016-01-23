@@ -1,11 +1,9 @@
 require './lib/docking_station.rb'
 require './lib/bike.rb'
 require './lib/garage.rb'
-require './lib/van.rb'
 
-describe Garage do  
+describe Garage do 
 	it "fixes bikes and returns to vans" do
-
 	station = DockingStation.new
 	bike = Bike.new
 	garage = Garage.new
@@ -15,7 +13,8 @@ describe Garage do
 	van.collect(station)
 	van.deliver(garage)
 	garage.fix_bikes
-	#expect(subject.fix_bikes.pop.working).to eq true
+	expect(bike.working).to eq true
 
-	end
+
+end
 end
