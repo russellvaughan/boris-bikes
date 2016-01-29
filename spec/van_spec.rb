@@ -44,10 +44,14 @@ describe Van do
   end
 
   it 'collects broken bikes' do
-    allow(docking_station).to receive(:bikes).and_return([bike1, bike2, bike3])
-    expect(docking_station.bikes).to eq([bike1, bike2, bike3])
-    docking_station.bikes
-    expect(subject.collect(docking_station)).to eq [bike2, bike3]
+    station = DockingStation.new
+    bike1 = Bike.new
+    garage = Garage.new
+    van = Van.new
+    bike1.report_broken
+    station.dock(bike1)
+    van.collect(station)
+    expect(van.bike_hold).to eq [bike1]
   end
 
   
