@@ -1,10 +1,14 @@
-require './lib/bike'
+require './lib/bike.rb'
+require 'bikecontainer'
 
 class Garage
+include BikeContainer
+attr_accessor :broken_bikes, :fixed_bikes, :bikes
 
-attr_accessor :broken_bikes, :fixed_bikes
 
-  def initialize
+  def initialize(capacity=DEFAULT_CAPACITY)
+  	@capacity = capacity
+  	@bikes = []
     @broken_bikes = []
     @fixed_bikes = []
   end

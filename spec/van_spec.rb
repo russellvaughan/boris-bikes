@@ -56,9 +56,6 @@ describe Van do
 
   
 
-
-
-
   describe '#deliver' do
     it 'delivers broken bikes to garage' do
       allow(subject).to receive(:collect) {[bike1, bike2]}

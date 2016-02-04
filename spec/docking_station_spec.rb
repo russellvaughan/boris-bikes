@@ -1,4 +1,5 @@
 require 'docking_station'
+require 'support/shared_examples_for_bike_container'
 
 describe DockingStation do
 	let(:bike) {double(:bike, :working => true)}
@@ -10,9 +11,7 @@ describe DockingStation do
 		expect(subject.release_bike.working).to eq true
 	end
 
-
-
-
+	it_behaves_like BikeContainer 
 
 
 
@@ -57,17 +56,5 @@ describe DockingStation do
 		end
 	end
 
-
-
-	describe '.initialize' do
-		it "has a default capacity" do
-		expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
-		end
-
-		it "can have a set capacity" do
-			ds = DockingStation.new(30)
-			expect(ds.capacity).to eq 30
-		end
-	end
 
 end

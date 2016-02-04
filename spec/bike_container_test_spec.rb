@@ -1,15 +1,12 @@
+require 'bikecontainer'
+require_relative './support/shared_examples_for_bike_container.rb'
+# The purpose of this class is to give us an instance of
+# something that includes `BikeContainer`, to initially run tests against
+class BikeContainerTest
+  include BikeContainer
+end
 
-# require_relative "support/shared_examples_for_bike_container.rb"
-# require "BikeContainer"
-
-# class BikeContainerTest
-# 	include BikeContainer
-# end
-
-# describe BikeContainerTest do
-# 	it_behaves_like BikeContainer
-# end
-
-
-
-
+# `it_behaves_like BikeContainer` imports all the tests in the shared example
+describe BikeContainerTest do
+  it_behaves_like BikeContainer
+end
